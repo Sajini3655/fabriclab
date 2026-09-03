@@ -18,71 +18,61 @@ export class MaterialsPage {
     }
 
     private render(): void {
+        const presets = Object.values(MATERIAL_PRESETS);
+
         this.el.innerHTML = `
             <div class="page-header">
                 <div>
-                    <h1 class="page-title">Material Physics Laboratory Specimen Gallery</h1>
-                    <p class="page-subtitle">Standardized virtual textile specimens calibrated with XPBD stiffness, density, and damping parameters.</p>
+                    <h1 class="page-title">Material Specimen Catalog</h1>
+                    <p class="page-subtitle">Eight parameterized physical specimens configured with surface area density, compliance, and internal damping.</p>
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
-                ${Object.values(MATERIAL_PRESETS).map(mat => {
-                    const rgb = `rgb(${Math.round(mat.color[0] * 255)}, ${Math.round(mat.color[1] * 255)}, ${Math.round(mat.color[2] * 255)})`;
-                    return `
-                        <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 12px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <div style="display: flex; align-items: center; gap: 8px;">
-                                    <span class="material-chip" style="background: ${rgb}; width: 18px; height: 18px;"></span>
-                                    <h3 style="font-size: 14px; font-weight: 700;">${mat.name}</h3>
-                                </div>
-                                <span style="font-size: 10px; font-family: var(--font-mono); color: var(--accent-blue); background: rgba(59,130,246,0.1); padding: 2px 6px; border-radius: 3px;">${mat.category}</span>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%;">
+                ${presets.map((m, idx) => `
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); padding: 16px; display: flex; flex-direction: column; gap: 10px; transition: border-color 0.15s ease;" onmouseenter="this.style.borderColor='var(--border-medium)'" onmouseleave="this.style.borderColor='var(--border-subtle)'">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                            <div>
+                                <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); font-weight: 700;">SPECIMEN // 0${idx + 1}</span>
+                                <h3 style="font-size: 13px; font-weight: 700; color: var(--text-primary); margin-top: 2px;">${m.name}</h3>
                             </div>
+                            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: rgb(${Math.round(m.color[0]*255)}, ${Math.round(m.color[1]*255)}, ${Math.round(m.color[2]*255)});"></span>
+                        </div>
 
-                            <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; min-height: 36px;">${mat.description}</p>
+                        <span style="font-size: 10px; font-family: var(--font-mono); color: var(--accent-cyan); text-transform: uppercase;">${m.category}</span>
 
-                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; background: var(--bg-base); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 10px; font-size: 11px;">
-                                <div><span style="color: var(--text-muted);">Density:</span> <span style="font-family: var(--font-mono); color: var(--accent-cyan);">${mat.density} kg/m²</span></div>
-                                <div><span style="color: var(--text-muted);">Stretch α:</span> <span style="font-family: var(--font-mono); color: var(--accent-cyan);">${mat.stretchCompliance}</span></div>
-                                <div><span style="color: var(--text-muted);">Bend α:</span> <span style="font-family: var(--font-mono); color: var(--accent-cyan);">${mat.bendCompliance}</span></div>
-                                <div><span style="color: var(--text-muted);">Damping:</span> <span style="font-family: var(--font-mono); color: var(--accent-cyan);">${mat.damping}</span></div>
-                                <div><span style="color: var(--text-muted);">Friction:</span> <span style="font-family: var(--font-mono); color: var(--accent-cyan);">${mat.friction}</span></div>
-                                <div><span style="color: var(--text-muted);">Thickness:</span> <span style="font-family: var(--font-mono); color: var(--accent-cyan);">${mat.thicknessMm} mm</span></div>
+                        <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4; min-height: 32px;">${m.description}</p>
+
+                        <div style="border-top: 1px solid var(--border-subtle); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; font-family: var(--font-mono); font-size: 10px;">
+                            <div style="display: flex; justify-content: space-between; color: var(--text-secondary);">
+                                <span>Area Density:</span>
+                                <span style="color: var(--text-primary); font-weight: 600;">${m.density} kg/m²</span>
                             </div>
-
-                            <div style="display: flex; gap: 6px; margin-top: 4px;">
-                                <button class="btn btn-primary btn-sm load-mat-btn" data-id="${mat.id}" style="flex: 1;">
-                                    🔬 Load into Lab
-                                </button>
-                                <button class="btn btn-secondary btn-sm inspect-mat-btn" data-id="${mat.id}">
-                                    📊 Analysis
-                                </button>
+                            <div style="display: flex; justify-content: space-between; color: var(--text-secondary);">
+                                <span>Bend Compliance:</span>
+                                <span style="color: var(--text-primary); font-weight: 600;">${m.bendCompliance} rad/N</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; color: var(--text-secondary);">
+                                <span>Stretch Compliance:</span>
+                                <span style="color: var(--text-primary); font-weight: 600;">${m.stretchCompliance} m/N</span>
                             </div>
                         </div>
-                    `;
-                }).join("")}
+
+                        <button class="btn btn-secondary btn-sm load-mat-btn" data-mat="${m.id}" style="margin-top: 4px; width: 100%;">
+                            🔬 Simulate Specimen
+                        </button>
+                    </div>
+                `).join("")}
             </div>
         `;
 
         this.el.querySelectorAll(".load-mat-btn").forEach(btn => {
             btn.addEventListener("click", (e) => {
-                const target = e.currentTarget as HTMLElement;
-                const id = target.dataset.id;
-                if (id && MATERIAL_PRESETS[id]) {
-                    const mat = MATERIAL_PRESETS[id];
-                    store.setMaterial(mat);
-                    this.engine.setMaterial(mat);
+                const matId = (e.currentTarget as HTMLElement).dataset.mat;
+                if (matId && MATERIAL_PRESETS[matId]) {
+                    store.setMaterial(MATERIAL_PRESETS[matId]);
+                    this.engine.setMaterial(MATERIAL_PRESETS[matId]);
                     store.setPage("laboratory");
-                }
-            });
-        });
-
-        this.el.querySelectorAll(".inspect-mat-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                const target = e.currentTarget as HTMLElement;
-                const id = target.dataset.id;
-                if (id && MATERIAL_PRESETS[id]) {
-                    store.emit("openMaterialDetail", MATERIAL_PRESETS[id]);
                 }
             });
         });

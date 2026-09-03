@@ -77,7 +77,7 @@ export class SimulationEngine {
         this.camera = new Camera(device, canvas, {
             width: canvas.width,
             height: canvas.height,
-            distance: 12,
+            distance: 7.8,
             rotationX: 18,
             rotationY: 0,
         });

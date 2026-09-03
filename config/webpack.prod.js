@@ -1,10 +1,9 @@
-const path = require("path")
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const {CleanWebpackPlugin} = require("clean-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-
-const ROOT_DIRECTORY = process.cwd()
+const ROOT_DIRECTORY = process.cwd();
 
 module.exports = {
     mode: "production",
@@ -12,8 +11,9 @@ module.exports = {
         main: path.resolve(ROOT_DIRECTORY, "src/index.ts"),
     },
     output: {
-        filename: "bundle.js",
+        filename: "bundle.[contenthash:8].js",
         path: path.resolve(ROOT_DIRECTORY, "dist"),
+        clean: true,
     },
     resolve: {
         extensions: [".ts", ".js"],
@@ -43,30 +43,27 @@ module.exports = {
                 test: /\.wgsl$/,
                 type: "asset/source",
             },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: "asset/resource",
+            },
         ],
     },
     plugins: [
-        new MiniCssExtractPlugin(),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: "main.[contenthash:8].css",
+        }),
         new HtmlWebpackPlugin({
             template: path.resolve(ROOT_DIRECTORY, "src/index.html"),
             filename: "index.html",
-            minify: {
-                collapseWhitespace: true,
-                removeComments: true,
-                removeRedundantAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                useShortDoctype: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true,
-            },
+            inject: "body",
             meta: {
                 webgpu: {
                     "http-equiv": "origin-trial",
-                    "content": "AqdkdXorUNhIUefLbz/oR7k/dOVaxco3UElcEbYnljN8F7vQrunt2jRnzq39M1XGios73q+209/CZF0xCUGCpQ0AAABHeyJvcmlnaW4iOiJodHRwOi8vbG9jYWxob3N0OjgwIiwiZmVhdHVyZSI6IldlYkdQVSIsImV4cGlyeSI6MTY2MzcxODM5OX0=",
-                }
-            }
+                    content: "webgpu",
+                },
+            },
         }),
     ],
-}
+};

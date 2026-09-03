@@ -2,7 +2,7 @@
 
 **FabricLab** is an interactive, browser-based 3D physics and material science laboratory built on **WebGPU** compute pipelines and **Extended Position-Based Dynamics (XPBD)**. It enables real-time exploration of digital textiles, compliant constraints, dihedral bending, aerodynamic wind fields, and rigid body collisions with zero per-frame DOM re-rendering overhead.
 
-![FabricLab Main Laboratory](docs/images/laboratory.png)
+![FabricLab Main Laboratory](./docs/images/laboratory.png)
 
 ---
 
@@ -17,7 +17,7 @@
 - **Physics Parameters**: Parameterized area density ($\text{kg/m}^2$), stretch compliance ($\alpha$), bending compliance ($\alpha$), damping, friction, and specular roughness.
 - **Material Specimen Catalog & Detail Modal**: In-depth physical parameter distribution analysis with one-click laboratory loading.
 
-![FabricLab Material Specimen Catalog](docs/images/materials.png)
+![FabricLab Material Specimen Catalog](./docs/images/materials.png)
 
 ### ✋ Direct 3D Interaction & Anchor Editor
 - **Screen-to-World Raycasting**: Real-time unprojected 3D camera raycasting to grab, stretch, pull, and release cloth vertices in 3D world space.
@@ -29,17 +29,17 @@
 ### ⚖️ Analytical Material Comparison
 - **Side-by-Side Comparison Matrix**: Direct comparative inspection of material properties, mass, compliance, and damping under identical physical environments.
 
-![FabricLab Material Comparison Lab](docs/images/comparison.png)
+![FabricLab Material Comparison Lab](./docs/images/comparison.png)
 
 ### ⚡ Multi-Tier Performance Benchmark Suite
 - **Automated Stress Testing**: Automated benchmark tiers ($5\text{K}$ to $100\text{K}$ particles) sampling frame times with \`performance.now()\`, computing Mean FPS, Min FPS, Mean Latency, and P95/P99 latency percentiles, with persistent session history and CSV export.
 
-![FabricLab Performance Benchmark Suite](docs/images/benchmark.png)
+![FabricLab Performance Benchmark Suite](./docs/images/benchmark.png)
 
 ### 💾 Persistent Laboratory Experiment Archive
 - **Versioned JSON Snapshots**: Versioned schema (`schemaVersion: 1`) with local `localStorage` persistence, tag filtering, duplication, deletion, and robust JSON export/import with validation error handling.
 
-![FabricLab Saved Experiments Archive](docs/images/experiments.png)
+![FabricLab Saved Experiments Archive](./docs/images/experiments.png)
 
 ---
 

@@ -1,5 +1,4 @@
 import { store } from "../../state/Store";
-import { MATERIAL_PRESETS } from "../../simulation/materials/MaterialPresets";
 import { SimulationEngine } from "../../simulation/engine/SimulationEngine";
 
 export class LandingPage {
@@ -19,73 +18,66 @@ export class LandingPage {
 
     private render(): void {
         this.el.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 900px; margin: 40px auto; gap: 24px;">
-                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; padding: 4px 14px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-cyan); font-weight: 600;">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; max-width: 100%; margin: 16px 0 32px 0; gap: 20px;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: #0f131a; border: 1px solid var(--border-medium); border-radius: var(--radius-xs); padding: 4px 10px; font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan); letter-spacing: 0.08em;">
                     <span class="status-dot"></span>
-                    <span>WEBGPU NATIVE • XPBD PHYSICS ENGINE 3.0</span>
+                    <span>WEBGPU NATIVE // XPBD ENGINE 3.0 // HIGH-PRECISION INSTRUMENT</span>
                 </div>
 
-                <h1 style="font-size: 38px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--text-primary);">
+                <h1 style="font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: var(--text-primary); text-transform: uppercase;">
                     FABRICLAB
-                    <span style="display: block; font-size: 20px; font-weight: 500; color: var(--text-secondary); margin-top: 8px; letter-spacing: -0.01em;">
+                    <span style="display: block; font-size: 15px; font-weight: 500; font-family: var(--font-mono); color: var(--text-secondary); margin-top: 6px; letter-spacing: 0.04em;">
                         Interactive Material & Physics Laboratory
                     </span>
                 </h1>
 
-                <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; max-width: 700px;">
-                    Experiment with digital fabrics, compliant physical forces, dihedral constraints, aerodynamic wind shears, rigid colliders, and GPU compute performance in real time.
+                <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.6; max-width: 620px;">
+                    A real-time computational workstation for digital textiles, compliant physical forces, dihedral bending constraints, and GPU compute performance.
                 </p>
 
-                <div style="display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; justify-content: center;">
-                    <button class="btn btn-primary" id="btn-enter-lab" style="padding: 10px 24px; font-size: 14px; font-weight: 600;">
-                        🔬 Enter Main Laboratory
+                <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap; justify-content: center;">
+                    <button class="btn btn-primary" id="btn-enter-lab" style="padding: 8px 18px; font-size: 11px;">
+                        🔬 ENTER LABORATORY
                     </button>
-                    <button class="btn btn-secondary" id="btn-explore-materials" style="padding: 10px 20px; font-size: 14px;">
-                        🧪 Material Specimen Catalog
+                    <button class="btn btn-secondary" id="btn-explore-materials" style="padding: 8px 14px; font-size: 11px;">
+                        🧪 SPECIMEN CATALOG
                     </button>
-                    <button class="btn btn-secondary" id="btn-open-benchmarks" style="padding: 10px 20px; font-size: 14px;">
-                        ⚡ Performance Benchmarks
+                    <button class="btn btn-secondary" id="btn-open-benchmarks" style="padding: 8px 14px; font-size: 11px;">
+                        ⚡ BENCHMARK SUITE
                     </button>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; width: 100%; margin-top: 36px; text-align: left;">
-                    <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-                        <div style="font-size: 18px;">⚡</div>
-                        <h3 style="font-size: 13px; font-weight: 700; color: var(--text-primary);">Native WebGPU Compute</h3>
-                        <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">Numerical integration, constraint projections, and atomic normals execute 100% on GPU compute pipelines.</p>
+                <!-- Architectural Ledger Sections -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; width: 100%; margin-top: 28px; text-align: left;">
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+                        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan); font-weight: 700;">01 // COMPUTE CORE</span>
+                        <h3 style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Native WebGPU Shaders</h3>
+                        <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Numerical sub-stepping, constraints, and atomic face normals execute in parallel on GPU workgroups.</p>
                     </div>
 
-                    <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-                        <div style="font-size: 18px;">🧬</div>
-                        <h3 style="font-size: 13px; font-weight: 700; color: var(--text-primary);">XPBD Compliant Physics</h3>
-                        <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">Small-step sub-stepping with parallel Gauss-Seidel constraint graph coloring eliminates stiffness instability.</p>
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+                        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan); font-weight: 700;">02 // SOLVER DYNAMICS</span>
+                        <h3 style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Extended PBD (XPBD)</h3>
+                        <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Time-step independent elastic compliance (α) with Gauss-Seidel constraint graph coloring.</p>
                     </div>
 
-                    <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-                        <div style="font-size: 18px;">🔬</div>
-                        <h3 style="font-size: 13px; font-weight: 700; color: var(--text-primary);">8 Calibrated Textiles</h3>
-                        <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">Silk, Denim, Leather, Rubber, Cotton, Linen, Wool, and Canvas with area mass, bending compliance, and damping.</p>
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+                        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan); font-weight: 700;">03 // MATERIAL SCIENCE</span>
+                        <h3 style="font-size: 12px; font-weight: 700; color: var(--text-primary);">8 Parameterized Specimens</h3>
+                        <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Silk, Denim, Leather, Rubber, Cotton, Linen, Wool, and Canvas with calibrated area mass and damping.</p>
                     </div>
 
-                    <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 18px; display: flex; flex-direction: column; gap: 8px;">
-                        <div style="font-size: 18px;">✋</div>
-                        <h3 style="font-size: 13px; font-weight: 700; color: var(--text-primary);">Direct 3D Raycasting</h3>
-                        <p style="font-size: 11px; color: var(--text-secondary); line-height: 1.5;">Grab, pull, and release vertices in space or click to place custom physical anchor pins.</p>
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-xs); padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+                        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-cyan); font-weight: 700;">04 // DIRECT INTERACTION</span>
+                        <h3 style="font-size: 12px; font-weight: 700; color: var(--text-primary);">3D Raycaster & Anchors</h3>
+                        <p style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Real-time screen-to-world vertex dragging, dynamic pinning, and Turbo strain heat-map visualization.</p>
                     </div>
                 </div>
             </div>
         `;
 
-        this.el.querySelector("#btn-enter-lab")?.addEventListener("click", () => {
-            store.setPage("laboratory");
-        });
-
-        this.el.querySelector("#btn-explore-materials")?.addEventListener("click", () => {
-            store.setPage("materials");
-        });
-
-        this.el.querySelector("#btn-open-benchmarks")?.addEventListener("click", () => {
-            store.setPage("benchmarks");
-        });
+        this.el.querySelector("#btn-enter-lab")?.addEventListener("click", () => store.setPage("laboratory"));
+        this.el.querySelector("#btn-explore-materials")?.addEventListener("click", () => store.setPage("materials"));
+        this.el.querySelector("#btn-open-benchmarks")?.addEventListener("click", () => store.setPage("benchmarks"));
     }
 }

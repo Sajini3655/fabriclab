@@ -30,7 +30,7 @@ export class ComparisonPage {
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; width: 100%;">
+            <div class="comparison-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; width: 100%;">
                 <!-- Specimen A -->
                 <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 28px; display: flex; flex-direction: column; gap: 18px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -43,7 +43,7 @@ export class ComparisonPage {
                     <h2 style="font-size: 20px; font-weight: 700; color: var(--text-primary);">${matA.name}</h2>
                     <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">${matA.description}</p>
 
-                    <table class="data-table">
+                    <div class="table-responsive-wrapper"><table class="data-table">
                         <tbody>
                             <tr><td>Category</td><td style="color: var(--text-primary); font-weight: 500;">${matA.category}</td></tr>
                             <tr><td>Area Density</td><td>${matA.density} kg/m²</td></tr>
@@ -53,7 +53,7 @@ export class ComparisonPage {
                             <tr><td>Friction Coefficient</td><td>${matA.friction}</td></tr>
                             <tr><td>Stiffness Rating</td><td style="font-weight: 600; color: var(--text-primary);">${matA.stiffnessRating}</td></tr>
                         </tbody>
-                    </table>
+                    </table></div>
 
                     <button class="btn btn-secondary btn-sm" id="btn-load-a-lab" style="margin-top: 10px; padding: 8px;">
                         Load Specimen A into Laboratory →

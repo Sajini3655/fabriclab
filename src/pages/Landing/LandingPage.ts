@@ -24,7 +24,7 @@ export class LandingPage {
                 <!-- ================================================================= -->
                 <!-- HERO SECTION: Split Exhibition Stage -->
                 <!-- ================================================================= -->
-                <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;">
+                <div class="hero-split-grid" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;">
                     
                     <!-- Left: Editorial Opening -->
                     <div style="display: flex; flex-direction: column; gap: 24px;">

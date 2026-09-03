@@ -8,7 +8,7 @@
     /* Warm Obsidian & Deep Graphite Surfaces */
     --bg-base: #09090b;
     --bg-surface: #101014;
-    --bg-panel: rgba(16, 16, 20, 0.88);
+    --bg-panel: rgba(16, 16, 20, 0.92);
     --bg-card: #14141a;
     --bg-card-hover: #1c1c24;
     --bg-elevated: #22222c;
@@ -25,7 +25,7 @@
     --text-muted: #626270;
     --text-dim: #3e3e48;
 
-    /* Restrained Studio Accents (Warm Terracotta / Soft Copper / Amber) */
+    /* Restrained Studio Accents */
     --accent-primary: #e07a5f;
     --accent-warm: #e29578;
     --accent-amber: #d97706;
@@ -110,7 +110,7 @@ html.in-laboratory, body.in-laboratory {
 }
 
 /* ==========================================================================
-   QUIET EDITORIAL TOP BAR
+   TOP BAR (Desktop + Mobile Responsive)
    ========================================================================== */
 .top-bar {
     height: var(--topbar-height);
@@ -119,7 +119,7 @@ html.in-laboratory, body.in-laboratory {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 clamp(24px, 4vw, 56px);
+    padding: 0 clamp(16px, 4vw, 56px);
     z-index: 100;
     flex-shrink: 0;
     position: sticky;
@@ -129,7 +129,7 @@ html.in-laboratory, body.in-laboratory {
 .brand-section {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .brand-logo {
@@ -157,7 +157,7 @@ html.in-laboratory, body.in-laboratory {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 .nav-item {
@@ -167,10 +167,11 @@ html.in-laboratory, body.in-laboratory {
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.02em;
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: color 0.15s ease, background 0.15s ease;
+    white-space: nowrap;
 }
 
 .nav-item:hover {
@@ -186,7 +187,7 @@ html.in-laboratory, body.in-laboratory {
 .status-section {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .webgpu-status-pill {
@@ -213,7 +214,7 @@ html.in-laboratory, body.in-laboratory {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: var(--radius-sm);
     font-size: 12px;
     font-weight: 500;
@@ -221,6 +222,7 @@ html.in-laboratory, body.in-laboratory {
     transition: all 0.15s ease;
     border: 1px solid transparent;
     text-decoration: none;
+    touch-action: manipulation;
 }
 
 .btn-primary {
@@ -245,20 +247,20 @@ html.in-laboratory, body.in-laboratory {
 }
 
 .btn-sm {
-    padding: 5px 10px;
+    padding: 6px 10px;
     font-size: 11px;
 }
 
 /* ==========================================================================
-   NATURAL RESPONSIVE FULL-WIDTH PAGE CONTAINER (min(92vw, 1560px))
+   NATURAL RESPONSIVE FULL-WIDTH PAGE CONTAINER
    ========================================================================== */
 .page-screen {
     width: min(92vw, 1560px);
     margin: 0 auto;
-    padding: clamp(36px, 4vw, 64px) 0 88px 0;
+    padding: clamp(24px, 4vw, 64px) 0 88px 0;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 36px;
     flex: 1;
 }
 
@@ -267,12 +269,14 @@ html.in-laboratory, body.in-laboratory {
     justify-content: space-between;
     align-items: flex-end;
     border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 24px;
+    padding-bottom: 20px;
     width: 100%;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .page-title {
-    font-size: 28px;
+    font-size: clamp(22px, 3.5vw, 28px);
     font-weight: 700;
     letter-spacing: -0.03em;
     color: var(--text-primary);
@@ -302,6 +306,11 @@ html.in-laboratory, body.in-laboratory {
     position: absolute;
     top: 0;
     left: 0;
+    touch-action: none;
+}
+
+canvas#simulation-canvas {
+    touch-action: none;
 }
 
 .dock-panel {
@@ -326,14 +335,6 @@ html.in-laboratory, body.in-laboratory {
 
 .dock-right {
     right: 24px;
-}
-
-.dock-collapsed-left {
-    transform: translateX(calc(-100% - 30px));
-}
-
-.dock-collapsed-right {
-    transform: translateX(calc(100% + 30px));
 }
 
 .dock-header {
@@ -383,6 +384,48 @@ html.in-laboratory, body.in-laboratory {
     gap: 18px;
 }
 
+.dock-close-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+/* MOBILE TOGGLE PILLS FOR LAB */
+.mobile-dock-toggles {
+    display: none;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    justify-content: space-between;
+    z-index: 25;
+    pointer-events: none;
+}
+
+.mobile-dock-toggles button {
+    pointer-events: auto;
+    background: var(--bg-panel);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+.dock-backdrop {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 18;
+}
+
 /* CONTROL GROUPS */
 .control-group {
     display: flex;
@@ -425,7 +468,7 @@ html.in-laboratory, body.in-laboratory {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 3px;
+    height: 4px;
     background: rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-xs);
     outline: none;
@@ -435,16 +478,11 @@ html.in-laboratory, body.in-laboratory {
 .slider-input::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     background: #f4f4f7;
     border-radius: 50%;
     cursor: pointer;
-    transition: transform 0.1s ease;
-}
-
-.slider-input::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
 }
 
 /* MATERIAL SELECTOR CARDS */
@@ -550,6 +588,7 @@ html.in-laboratory, body.in-laboratory {
     gap: 6px;
     padding: 0 14px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    max-width: calc(100vw - 24px);
 }
 
 .control-separator {
@@ -557,6 +596,7 @@ html.in-laboratory, body.in-laboratory {
     height: 16px;
     background: var(--border-subtle);
     margin: 0 4px;
+    flex-shrink: 0;
 }
 
 /* VIEWPORT OVERLAY CONTROLS */
@@ -573,18 +613,25 @@ html.in-laboratory, body.in-laboratory {
     border-radius: 20px;
     padding: 4px 6px;
     z-index: 10;
+    max-width: calc(100vw - 24px);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.viewport-overlay::-webkit-scrollbar {
+    display: none;
 }
 
 .overlay-btn {
     background: transparent;
     border: none;
     color: var(--text-secondary);
-    padding: 4px 10px;
+    padding: 5px 10px;
     border-radius: 14px;
     font-size: 11px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.12s ease;
+    white-space: nowrap;
 }
 
 .overlay-btn:hover {
@@ -596,12 +643,19 @@ html.in-laboratory, body.in-laboratory {
     color: var(--text-primary);
 }
 
-/* DATA TABLES */
+/* DATA TABLES & SCROLLABLE WRAPPER */
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
     text-align: left;
+    min-width: 280px;
 }
 
 .data-table th {
@@ -612,12 +666,14 @@ html.in-laboratory, body.in-laboratory {
     letter-spacing: 0.04em;
     padding: 12px 14px;
     border-bottom: 1px solid var(--border-subtle);
+    white-space: nowrap;
 }
 
 .data-table td {
     padding: 12px 14px;
     border-bottom: 1px solid var(--border-subtle);
     color: var(--text-secondary);
+    white-space: nowrap;
 }
 
 .data-table tr:hover td {
@@ -638,10 +694,13 @@ html.in-laboratory, body.in-laboratory {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
 }
 
 .modal-card {
-    width: 480px;
+    width: 520px;
+    max-width: 100%;
+    max-height: 90vh;
     background: var(--bg-surface);
     border: 1px solid var(--border-medium);
     border-radius: var(--radius-md);
@@ -664,6 +723,7 @@ html.in-laboratory, body.in-laboratory {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    overflow-y: auto;
 }
 
 .modal-footer {
@@ -695,7 +755,7 @@ html.in-laboratory, body.in-laboratory {
     position: fixed;
     bottom: 24px;
     left: 24px;
-    width: 320px;
+    width: min(320px, calc(100vw - 48px));
     background: var(--bg-panel);
     border: 1px solid var(--border-medium);
     border-radius: var(--radius-md);
@@ -706,4 +766,131 @@ html.in-laboratory, body.in-laboratory {
     flex-direction: column;
     gap: 8px;
     backdrop-filter: blur(20px);
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+
+/* TABLETS & SMALL DESKTOPS (<= 992px) */
+@media (max-width: 992px) {
+    .page-screen {
+        width: calc(100vw - 40px);
+        padding-top: 28px;
+    }
+}
+
+/* PHONES & TABLETS (<= 768px) */
+@media (max-width: 768px) {
+    :root {
+        --topbar-height: auto;
+    }
+
+    .top-bar {
+        padding: 10px 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+    .nav-item {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .status-section {
+        gap: 6px;
+    }
+
+    .page-screen {
+        width: calc(100vw - 28px);
+        padding-top: 20px;
+        gap: 28px;
+    }
+
+    /* HOME HERO STACKING */
+    .hero-split-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+    }
+
+    /* COMPARISON PAGE STACKING */
+    .comparison-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* LABORATORY RESPONSIVE DRAWER */
+    .mobile-dock-toggles {
+        display: flex;
+    }
+
+    .dock-close-btn {
+        display: block;
+    }
+
+    .dock-panel {
+        top: 60px;
+        bottom: 80px;
+        width: min(320px, calc(100vw - 32px));
+        z-index: 50;
+        box-shadow: 0 24px 64px rgba(0,0,0,0.9);
+    }
+
+    .dock-left {
+        left: 16px;
+        transform: translateX(calc(-100% - 30px));
+    }
+
+    .dock-right {
+        right: 16px;
+        transform: translateX(calc(100% + 30px));
+    }
+
+    .dock-panel.dock-mobile-open {
+        transform: translateX(0) !important;
+    }
+
+    .dock-backdrop.dock-backdrop-active {
+        display: block;
+    }
+
+    .viewport-overlay {
+        top: 56px;
+        padding: 3px 4px;
+    }
+
+    .bottom-control-bar {
+        bottom: 12px;
+        height: 40px;
+        gap: 4px;
+        padding: 0 10px;
+    }
+    .bottom-control-bar .speed-btn {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+}
+
+/* COMPACT PHONES (<= 480px) */
+@media (max-width: 480px) {
+    .page-screen {
+        width: calc(100vw - 24px);
+    }
+    .page-title {
+        font-size: 22px;
+    }
+    .btn {
+        padding: 8px 14px;
+    }
 }

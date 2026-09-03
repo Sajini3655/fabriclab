@@ -27,6 +27,11 @@ export class LaboratoryPage {
     private render(): void {
         this.el.innerHTML = `
             <div class="lab-viewport-container" id="viewport-container"></div>
+            <div class="dock-backdrop" id="dock-backdrop"></div>
+            <div class="mobile-dock-toggles">
+                <button class="btn btn-secondary btn-sm" id="btn-toggle-left-dock">⚙️ Controls</button>
+                <button class="btn btn-secondary btn-sm" id="btn-toggle-right-dock">📊 Telemetry</button>
+            </div>
 
             <div class="viewport-overlay">
                 <div style="display: flex; gap: 2px;">
@@ -56,6 +61,7 @@ export class LaboratoryPage {
             <aside class="dock-panel dock-left" id="dock-left">
                 <div class="dock-header">
                     <span class="dock-title">Laboratory Controls</span>
+     <button class="dock-close-btn" id="btn-close-left-dock" title="Close Panel">✕</button>
                     <div class="dock-tabs">
                         <button class="dock-tab-btn active" data-tab="materials">Materials</button>
                         <button class="dock-tab-btn" data-tab="physics">Physics</button>
@@ -160,6 +166,7 @@ export class LaboratoryPage {
             <aside class="dock-panel dock-right" id="dock-right">
                 <div class="dock-header">
                     <span class="dock-title">Live Telemetry & Diagnostics</span>
+     <button class="dock-close-btn" id="btn-close-right-dock" title="Close Panel">✕</button>
                 </div>
 
                 <div class="dock-body">
@@ -232,6 +239,7 @@ export class LaboratoryPage {
         this.initMaterialGrid();
         this.initDockTabs();
         this.initControlListeners();
+     this.initMobileDockListeners();
     }
 
     private initMaterialGrid(): void {
@@ -407,6 +415,48 @@ export class LaboratoryPage {
         this.el.querySelector("#btn-toggle-graph")?.addEventListener("click", () => {
             this.graphMode = this.graphMode === "ft" ? "fps" : "ft";
         });
+    }
+
+    
+    private initMobileDockListeners(): void {
+        const leftDock = this.el.querySelector("#dock-left") as HTMLElement;
+        const rightDock = this.el.querySelector("#dock-right") as HTMLElement;
+        const backdrop = this.el.querySelector("#dock-backdrop") as HTMLElement;
+
+        const toggleLeft = this.el.querySelector("#btn-toggle-left-dock");
+        const toggleRight = this.el.querySelector("#btn-toggle-right-dock");
+        const closeLeft = this.el.querySelector("#btn-close-left-dock");
+        const closeRight = this.el.querySelector("#btn-close-right-dock");
+
+        const closeAll = () => {
+            leftDock?.classList.remove("dock-mobile-open");
+            rightDock?.classList.remove("dock-mobile-open");
+            backdrop?.classList.remove("dock-backdrop-active");
+        };
+
+        toggleLeft?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isOpen = leftDock.classList.contains("dock-mobile-open");
+            closeAll();
+            if (!isOpen) {
+                leftDock.classList.add("dock-mobile-open");
+                backdrop.classList.add("dock-backdrop-active");
+            }
+        });
+
+        toggleRight?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const isOpen = rightDock.classList.contains("dock-mobile-open");
+            closeAll();
+            if (!isOpen) {
+                rightDock.classList.add("dock-mobile-open");
+                backdrop.classList.add("dock-backdrop-active");
+            }
+        });
+
+        closeLeft?.addEventListener("click", closeAll);
+        closeRight?.addEventListener("click", closeAll);
+        backdrop?.addEventListener("click", closeAll);
     }
 
     private initSubscriptions(): void {

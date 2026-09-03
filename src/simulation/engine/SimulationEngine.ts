@@ -93,12 +93,16 @@ export class SimulationEngine {
     }
 
     private buildSolverConfig() {
-        const windRad = (this.environment.windDirectionDeg * Math.PI) / 180;
-        const elevRad = (this.environment.windElevationDeg * Math.PI) / 180;
+        const windDeg = this.environment.windDirectionDeg ?? 45;
+        const elevDeg = this.environment.windElevationDeg ?? 0;
+        const windRad = (windDeg * Math.PI) / 180;
+        const elevRad = (elevDeg * Math.PI) / 180;
 
         let windVec = vec3.create(0, 0, 0);
         if (this.environment.windEnabled) {
-            const speed = this.environment.windSpeed;
+            const speed = (this.environment.windSpeed !== undefined && this.environment.windSpeed > 0) 
+                ? this.environment.windSpeed 
+                : 15;
             windVec = vec3.create(
                 Math.sin(windRad) * Math.cos(elevRad) * speed,
                 Math.sin(elevRad) * speed,

@@ -38,10 +38,13 @@ fn main(@builtin(num_workgroups) workgroup_size: vec3<u32>, @builtin(global_invo
         // Gravity
         velocities[id] += solverConfig.gravity * solverConfig.deltaTime;
 
-        // Wind force
+        // Aerodynamic Wind force with dynamic turbulent flutter
         if (length(solverConfig.wind) > 0.001) {
             let relativeWind = solverConfig.wind - velocities[id];
-            let windForce = relativeWind * 0.15;
+            let phase = f32(id % 43u) * 0.35 + positions[id].x * 1.5 + positions[id].y * 1.2;
+            let flutter = sin(phase) * 0.45;
+            let drag = 4.2 + flutter;
+            let windForce = relativeWind * drag;
             velocities[id] += windForce * solverConfig.deltaTime;
         }
 

@@ -106,6 +106,11 @@ async function main() {
             } else if (page === "laboratory") {
                 contentContainer.appendChild(labPage.getElement());
                 bottomBar.getElement().style.display = "flex";
+                requestAnimationFrame(() => {
+                    const w = window.innerWidth;
+                    const h = window.innerHeight - 54;
+                    engine.resize(w, Math.max(300, h));
+                });
             } else {
                 bottomBar.getElement().style.display = "none";
                 if (page === "materials") contentContainer.appendChild(materialsPage.getElement());
@@ -119,10 +124,15 @@ async function main() {
         store.subscribe<PageId>("page", renderActivePage);
         renderActivePage();
 
-        window.addEventListener("resize", () => {
+        const handleWindowResize = () => {
             const w = window.innerWidth;
-            const h = window.innerHeight - 52;
-            engine.resize(w, h);
+            const h = window.innerHeight - 54;
+            engine.resize(w, Math.max(300, h));
+        };
+
+        window.addEventListener("resize", handleWindowResize);
+        window.addEventListener("orientationchange", () => {
+            setTimeout(handleWindowResize, 100);
         });
 
         engine.run();

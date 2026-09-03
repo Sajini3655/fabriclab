@@ -1,5 +1,7 @@
 # FabricLab — Interactive Material & Physics Laboratory
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online%20(GitHub%20Pages)-10b981?style=for-the-badge&logo=github)](https://sajini3655.github.io/fabriclab/)
+
 **FabricLab** is an interactive, browser-based 3D physics and material science laboratory built on **WebGPU** compute pipelines and **Extended Position-Based Dynamics (XPBD)**. It enables real-time exploration of digital textiles, compliant constraints, dihedral bending, aerodynamic wind fields, and rigid body collisions with zero per-frame DOM re-rendering overhead.
 
 ![FabricLab Main Laboratory](./docs/images/laboratory.svg)

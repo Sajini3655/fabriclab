@@ -66,9 +66,10 @@ class Store {
         }
     }
 
-    public setPage(page: PageId): void {
-        this.activePage = page;
-        this.emit("page", page);
+    public setPage(page: PageId | string): void {
+        const target = (page === "compare" ? "comparison" : page) as PageId;
+        this.activePage = target;
+        this.emit("page", target);
     }
 
     public setMaterial(mat: MaterialProperty): void {

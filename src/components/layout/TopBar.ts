@@ -30,7 +30,7 @@ export class TopBar {
                 <button class="nav-item" data-page="landing">Home</button>
                 <button class="nav-item active" data-page="laboratory">Laboratory</button>
                 <button class="nav-item" data-page="materials">Materials</button>
-                <button class="nav-item" data-page="compare">Comparison</button>
+                <button class="nav-item" data-page="comparison">Comparison</button>
                 <button class="nav-item" data-page="experiments">Experiments</button>
                 <button class="nav-item" data-page="benchmarks">Benchmarks</button>
                 <button class="nav-item" data-page="about">About & Science</button>

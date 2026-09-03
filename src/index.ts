@@ -105,7 +105,7 @@ async function main() {
                 if (page === "materials") contentContainer.appendChild(materialsPage.getElement());
                 else if (page === "benchmarks") contentContainer.appendChild(benchmarksPage.getElement());
                 else if (page === "experiments") contentContainer.appendChild(experimentsPage.getElement());
-                else if (page === "comparison") contentContainer.appendChild(comparisonPage.getElement());
+                else if (page === "comparison" || (page as string) === "compare") contentContainer.appendChild(comparisonPage.getElement());
                 else if (page === "about") contentContainer.appendChild(aboutPage.getElement());
             }
         };

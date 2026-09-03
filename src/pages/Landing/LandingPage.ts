@@ -18,47 +18,50 @@ export class LandingPage {
 
     private render(): void {
         this.el.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 860px; margin: 32px auto 60px auto; gap: 28px;">
+            <div style="display: flex; flex-direction: column; width: 100%; gap: 48px; margin-top: 16px;">
                 
-                <span style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">
-                    FabricLab Studio
-                </span>
+                <!-- Hero Section (Wide & Impressive) -->
+                <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px; max-width: 900px;">
+                    <span style="font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-primary); font-weight: 600;">
+                        FabricLab Studio
+                    </span>
 
-                <h1 style="font-size: 44px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.08; color: var(--text-primary); text-transform: uppercase;">
-                    Interactive<br/>Material<br/>Laboratory
-                </h1>
+                    <h1 style="font-size: 52px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; color: var(--text-primary); text-transform: uppercase;">
+                        Interactive<br/>Material<br/>Laboratory
+                    </h1>
 
-                <p style="font-size: 15px; color: var(--text-secondary); line-height: 1.6; max-width: 580px;">
-                    Explore how parameterized digital fabrics deform, flow, and respond to physical forces in real time on native WebGPU compute pipelines.
-                </p>
+                    <p style="font-size: 16px; color: var(--text-secondary); line-height: 1.6; max-width: 680px;">
+                        Explore how parameterized digital fabrics deform, flow, and respond to physical forces in real time on native WebGPU compute pipelines.
+                    </p>
 
-                <div style="display: flex; gap: 12px; margin-top: 8px;">
-                    <button class="btn btn-primary" id="btn-enter-lab" style="padding: 10px 24px; font-size: 13px;">
-                        Enter Laboratory →
-                    </button>
-                    <button class="btn btn-secondary" id="btn-explore-materials" style="padding: 10px 20px; font-size: 13px;">
-                        Explore Specimen Gallery
-                    </button>
+                    <div style="display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" id="btn-enter-lab" style="padding: 12px 28px; font-size: 14px;">
+                            Enter Laboratory →
+                        </button>
+                        <button class="btn btn-secondary" id="btn-explore-materials" style="padding: 12px 24px; font-size: 14px;">
+                            Explore Specimen Gallery
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Three Clean Editorial Chapters (Rhythm & Breathing Space) -->
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; width: 100%; margin-top: 56px; text-align: left; border-top: 1px solid var(--border-subtle); padding-top: 48px;">
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- Three Wide Editorial Chapters Across Full 1500px Container -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; width: 100%; border-top: 1px solid var(--border-subtle); padding-top: 48px; margin-top: 16px;">
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
                         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-primary); font-weight: 600;">01 — MATERIAL</span>
-                        <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">Eight Parameterized Presets</h3>
-                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">From fluid gossamer silk to rigid raw denim, each producing a distinct physical response under compliant constraints.</p>
+                        <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">Eight Parameterized Presets</h3>
+                        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">From fluid gossamer silk to rigid raw denim, each producing a distinct physical response under compliant constraints.</p>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
                         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-primary); font-weight: 600;">02 — MOTION</span>
-                        <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">Dynamic Forces & Interaction</h3>
-                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Gravity fields, aerodynamic wind shears, rigid colliders, and direct 3D vertex manipulation in real time.</p>
+                        <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">Dynamic Forces & Interaction</h3>
+                        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">Gravity fields, aerodynamic wind shears, rigid colliders, and direct 3D vertex manipulation in real time.</p>
                     </div>
 
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
                         <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-primary); font-weight: 600;">03 — COMPUTATION</span>
-                        <h3 style="font-size: 15px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">WebGPU Parallel XPBD</h3>
-                        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Small-step numerical sub-stepping and Gauss-Seidel constraint projections drive the simulation directly on GPU.</p>
+                        <h3 style="font-size: 17px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.02em;">WebGPU Parallel XPBD</h3>
+                        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">Small-step numerical sub-stepping and Gauss-Seidel constraint projections drive the simulation directly on GPU.</p>
                     </div>
                 </div>
 

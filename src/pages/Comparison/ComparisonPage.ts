@@ -30,22 +30,22 @@ export class ComparisonPage {
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; width: 100%;">
                 <!-- Specimen A -->
-                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 28px; display: flex; flex-direction: column; gap: 18px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--accent-primary);">SPECIMEN A</span>
-                        <select id="select-mat-a" class="text-input" style="width: auto; padding: 4px 10px;">
+                        <select id="select-mat-a" class="text-input" style="width: auto; padding: 6px 12px;">
                             ${Object.values(MATERIAL_PRESETS).map(m => `<option value="${m.id}" ${m.id === matA.id ? "selected" : ""}>${m.name}</option>`).join("")}
                         </select>
                     </div>
 
-                    <h2 style="font-size: 18px; font-weight: 700; color: var(--text-primary);">${matA.name}</h2>
-                    <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">${matA.description}</p>
+                    <h2 style="font-size: 20px; font-weight: 700; color: var(--text-primary);">${matA.name}</h2>
+                    <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">${matA.description}</p>
 
                     <table class="data-table">
                         <tbody>
-                            <tr><td>Category</td><td style="color: var(--text-primary);">${matA.category}</td></tr>
+                            <tr><td>Category</td><td style="color: var(--text-primary); font-weight: 500;">${matA.category}</td></tr>
                             <tr><td>Area Density</td><td>${matA.density} kg/m²</td></tr>
                             <tr><td>Stretch Compliance (α)</td><td>${matA.stretchCompliance}</td></tr>
                             <tr><td>Bending Compliance (α)</td><td>${matA.bendCompliance}</td></tr>
@@ -55,26 +55,26 @@ export class ComparisonPage {
                         </tbody>
                     </table>
 
-                    <button class="btn btn-secondary btn-sm" id="btn-load-a-lab" style="margin-top: 8px;">
+                    <button class="btn btn-secondary btn-sm" id="btn-load-a-lab" style="margin-top: 10px; padding: 8px;">
                         Load Specimen A into Laboratory →
                     </button>
                 </div>
 
                 <!-- Specimen B -->
-                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 28px; display: flex; flex-direction: column; gap: 18px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--accent-warm);">SPECIMEN B</span>
-                        <select id="select-mat-b" class="text-input" style="width: auto; padding: 4px 10px;">
+                        <select id="select-mat-b" class="text-input" style="width: auto; padding: 6px 12px;">
                             ${Object.values(MATERIAL_PRESETS).map(m => `<option value="${m.id}" ${m.id === matB.id ? "selected" : ""}>${m.name}</option>`).join("")}
                         </select>
                     </div>
 
-                    <h2 style="font-size: 18px; font-weight: 700; color: var(--text-primary);">${matB.name}</h2>
-                    <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">${matB.description}</p>
+                    <h2 style="font-size: 20px; font-weight: 700; color: var(--text-primary);">${matB.name}</h2>
+                    <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">${matB.description}</p>
 
                     <table class="data-table">
                         <tbody>
-                            <tr><td>Category</td><td style="color: var(--text-primary);">${matB.category}</td></tr>
+                            <tr><td>Category</td><td style="color: var(--text-primary); font-weight: 500;">${matB.category}</td></tr>
                             <tr><td>Area Density</td><td>${matB.density} kg/m²</td></tr>
                             <tr><td>Stretch Compliance (α)</td><td>${matB.stretchCompliance}</td></tr>
                             <tr><td>Bending Compliance (α)</td><td>${matB.bendCompliance}</td></tr>
@@ -84,7 +84,7 @@ export class ComparisonPage {
                         </tbody>
                     </table>
 
-                    <button class="btn btn-secondary btn-sm" id="btn-load-b-lab" style="margin-top: 8px;">
+                    <button class="btn btn-secondary btn-sm" id="btn-load-b-lab" style="margin-top: 10px; padding: 8px;">
                         Load Specimen B into Laboratory →
                     </button>
                 </div>

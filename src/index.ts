@@ -76,9 +76,7 @@ async function main() {
         const aboutPage = new AboutPage();
 
         const contentContainer = document.createElement("div");
-        contentContainer.style.flex = "1";
-        contentContainer.style.position = "relative";
-        contentContainer.style.overflow = "hidden";
+        contentContainer.className = "app-content-container";
 
         root.appendChild(topBar.getElement());
         root.appendChild(contentContainer);
@@ -93,6 +91,16 @@ async function main() {
         const renderActivePage = () => {
             contentContainer.innerHTML = "";
             const page = store.activePage;
+
+            if (page === "laboratory") {
+                document.body.classList.add("in-laboratory");
+                document.documentElement.classList.add("in-laboratory");
+            } else {
+                document.body.classList.remove("in-laboratory");
+                document.documentElement.classList.remove("in-laboratory");
+            }
+
+            window.scrollTo({ top: 0, behavior: "instant" as any });
 
             if (page === "landing") {
                 contentContainer.appendChild(landingPage.getElement());

@@ -24,8 +24,8 @@ export class CommandPalette {
         });
 
         store.subscribe<boolean>("openCommandPalette", (open: boolean) => {
-            if (open) this.open();
-            else this.close();
+            if (open && !this.isOpen) this.open();
+            else if (!open && this.isOpen) this.close();
         });
     }
 
@@ -34,6 +34,7 @@ export class CommandPalette {
     }
 
     public open(): void {
+        if (this.isOpen) return;
         this.isOpen = true;
         this.el.style.display = "flex";
         const input = this.el.querySelector("#cmd-input") as HTMLInputElement;
@@ -45,9 +46,9 @@ export class CommandPalette {
     }
 
     public close(): void {
+        if (!this.isOpen) return;
         this.isOpen = false;
         this.el.style.display = "none";
-        store.emit("openCommandPalette", false);
     }
 
     public toggle(): void {

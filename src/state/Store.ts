@@ -44,6 +44,7 @@ class Store {
     };
 
     private listeners: Map<string, Set<Listener<any>>> = new Map();
+    private emittingEvents: Set<string> = new Set();
 
     public subscribe<T>(event: string, listener: Listener<T>): () => void {
         if (!this.listeners.has(event)) {
@@ -56,13 +57,21 @@ class Store {
     public emit<T>(event: string, data: T): void {
         const set = this.listeners.get(event);
         if (set) {
-            set.forEach((fn) => {
-                try {
-                    fn(data);
-                } catch (err) {
-                    console.error("Store listener error:", err);
-                }
-            });
+            if (this.emittingEvents.has(event)) {
+                return;
+            }
+            this.emittingEvents.add(event);
+            try {
+                set.forEach((fn) => {
+                    try {
+                        fn(data);
+                    } catch (err) {
+                        console.error("Store listener error:", err);
+                    }
+                });
+            } finally {
+                this.emittingEvents.delete(event);
+            }
         }
     }
 

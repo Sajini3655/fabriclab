@@ -9,7 +9,7 @@ export class TopBar {
         this.render();
 
         store.subscribe<PageId>("page", () => this.updateNavActiveState());
-        store.subscribe<any>("metrics", (m: any) => this.updateStatus(m.webgpuStatus, m.adapterVendor, m.fps));
+        store.subscribe<any>("metrics", (m: any) => this.updateStatus(m.fps));
     }
 
     public getElement(): HTMLElement {
@@ -19,11 +19,10 @@ export class TopBar {
     private render(): void {
         this.el.innerHTML = `
             <div class="brand-section">
-                <div class="brand-logo" id="brand-logo-btn" title="FabricLab Home">
-                    <span>FABRICLAB</span>
-                    <span class="brand-badge">XPBD // 3.0</span>
+                <div class="brand-logo" id="brand-logo-btn" title="FabricLab">
+                    <span>FabricLab</span>
+                    <span class="brand-badge">XPBD</span>
                 </div>
-                <div class="brand-tagline">PHYSICS INSTRUMENT</div>
             </div>
 
             <nav class="nav-links" id="nav-links">
@@ -37,18 +36,15 @@ export class TopBar {
             </nav>
 
             <div class="status-section">
-                <button class="btn btn-secondary btn-sm" id="btn-cmd-palette" title="Command Palette (Ctrl+K)">
+                <button class="btn btn-secondary btn-sm" id="btn-cmd-palette" title="Command Palette (Ctrl+K)" style="padding: 4px 8px; font-family: var(--font-mono); font-size: 11px;">
                     <span>⌘K</span>
                 </button>
-                <button class="btn btn-secondary btn-sm" id="btn-help" title="Help & Reference (?)">
+                <button class="btn btn-secondary btn-sm" id="btn-help" title="Help & Controls (?)" style="padding: 4px 8px;">
                     <span>?</span>
                 </button>
-                <button class="btn btn-secondary btn-sm" id="btn-settings" title="Settings">
-                    <span>⚙</span>
-                </button>
-                <div class="webgpu-status-pill" id="webgpu-status-pill">
+                <div class="webgpu-status-pill">
                     <span class="status-dot"></span>
-                    <span id="webgpu-status-text">WEBGPU ACTIVE</span>
+                    <span id="webgpu-status-text">60 fps</span>
                 </div>
             </div>
         `;
@@ -64,7 +60,6 @@ export class TopBar {
 
         this.el.querySelector("#btn-cmd-palette")?.addEventListener("click", () => store.emit("openCommandPalette", true));
         this.el.querySelector("#btn-help")?.addEventListener("click", () => store.emit("openHelpModal", true));
-        this.el.querySelector("#btn-settings")?.addEventListener("click", () => store.emit("openSettingsModal", true));
     }
 
     private updateNavActiveState(): void {
@@ -79,10 +74,10 @@ export class TopBar {
         });
     }
 
-    private updateStatus(status: string, vendor: string, fps: number): void {
+    private updateStatus(fps: number): void {
         const textEl = this.el.querySelector("#webgpu-status-text");
-        if (textEl) {
-            textEl.textContent = `WEBGPU ${fps > 0 ? fps + " FPS" : "ACTIVE"}`;
+        if (textEl && fps > 0) {
+            textEl.textContent = `${fps} fps`;
         }
     }
 }

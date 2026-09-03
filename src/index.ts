@@ -34,9 +34,7 @@ async function main() {
     }
 
     try {
-        const adapter = await gpu.requestAdapter({
-            powerPreference: "high-performance"
-        });
+        const adapter = await gpu.requestAdapter();
 
         if (!adapter) {
             throw new Error("No compatible GPU adapter found.");

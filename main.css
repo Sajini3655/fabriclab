@@ -634,3 +634,47 @@ input[type="range"]::-webkit-slider-thumb {
     border-color: var(--accent-blue);
 }
 
+/* CUSTOM SLEEK DARK SCROLLBAR */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+    background: #232a3b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
+}
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #232a3b var(--bg-base);
+}
+
+/* ONBOARDING FLOATING CARD */
+.onboarding-card {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 360px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    backdrop-filter: blur(12px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
